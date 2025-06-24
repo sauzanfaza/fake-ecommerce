@@ -9,18 +9,20 @@ export default async function ProductDetail({params}) {
     }
 
     return(
-        <main className="p-8">
-            <div>
+        <div className="min-h-screen flex justify-center items-center p-4">
+            <div className="flex flex-col sm:flex-row gap-4 border rounded-md shadow-md w-full max-w-5xl p-4">
+            
+            <div className="w-full sm:w-1/2 flex justify-center items-center ">
             <img src={product.image} alt={product.category}
-                className="w-full max-w-md h-full obejct-contain rounded-md"
+                className="w-auto max-h-80 0bject-contain rounded-md"
             />
             </div>
-            <div>
+            <div className="w-full sm:w-1/2 flex flex-col justify-center">
             <h1 className="text-2xl font-bold mb-4">{product.name}</h1>
             <p className="text-xl font-semibold mt-2">Rp {product.price.toLocaleString()}</p>
             <p className="mt-2 text-sm">{product.category}</p>
             </div>
-            
-        </main>
+            </div>
+        </div>
     )
 }
