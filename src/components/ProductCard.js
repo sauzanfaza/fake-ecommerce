@@ -1,11 +1,14 @@
 'use client';
 import products from "@/data/products";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function ProductCard() {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleClick = (id) => {
+        setIsLoading(true);
         router.push(`/productDetail/${id}`);
     }
     return(
@@ -15,7 +18,9 @@ export default function ProductCard() {
                 <div 
                     onClick={() => handleClick(product.id)}
                     key={product.id}    
-                    className="bg-white p-4 rounded-md border shadow aspect-square hover:scale-105 transition-transform duration-300">
+                    className={`bg-white p-4 rounded-md border shadow aspect-square hover:scale-105 transition-transform duration-300 ${
+                        isLoading ? 'opacity-50 pointer-events-none' : ''
+                    }`}>
                         <div className="w-full h-full bg-white rounded-md overflow-hidden flex items-center justify-center mb-2">
                         <img src={product.image} alt={product.category} 
                         className="object-contain"
@@ -24,7 +29,7 @@ export default function ProductCard() {
                         <div>
                         <h1>{product.name}</h1>
                         <p>Rp {product.price.toLocaleString()}</p>
-                        <p>{product.category}</p>
+                        <p>Stok : {product.stok}</p>
                         </div>
                         
                 </div>

@@ -1,14 +1,23 @@
+'use client';
 import {FaShoppingCart} from 'react-icons/fa';
+import { useRouter } from "next/navigation"
 
 
 export default function Header() {
+
+    const router = useRouter();
+    const handleClick = () => {
+        router.push('/productDetail/cart');
+    }
     return(
         <>
         <header className="w-full p-4 flex items-center justify-between mb-5">
             <div className="flex items-center">FAKE E-COMMERCE</div>
             <div className="flex-1"></div>
             <div className="flex items-center mr-2">
-                <button className="cursor-pointer group transition-colors duration-300">
+                <button 
+                onClick={handleClick}
+                className="cursor-pointer group transition-colors duration-300">
                     <FaShoppingCart className='text-black group-hover:text-slate-600 transition-colors duration-300'/>
                 </button>
             </div>
