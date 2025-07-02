@@ -1,12 +1,23 @@
 'use client';
 import products from "@/data/products";
+import { useCart } from "@/context/CartContext";
+import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
 
 export default function ProductDetail({params}) {
+    const router = useRouter();
+    const { addTocart, stockData } = useCart();
+
     const productId = parseInt(params.id);
     const product = products.find((pd) => pd.id === productId);
     if(!product) {
         return <div>Produk tidak ditemukan!!!</div>
+    }
+
+    const currentStock = stockData[product.id] ?? product.stok;
+    const handleClick = () => {
+        addTocart(product)
+        // router.push('/productDetail/cart');
     }
 
     return(
@@ -22,9 +33,11 @@ export default function ProductDetail({params}) {
             <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
             <p className="text-xl font-semibold ">Rp {product.price.toLocaleString()}</p>
             <p className="mt-1 text-sm">{product.category}</p>
-            <p className="mt-1 text-sm">stok : {product.stok}</p>
+            <p className="mt-1 text-sm">stok : {currentStock}</p>
             <div className="py-5 mt-4">
             <button 
+            onClick={handleClick}
+            disabled={currentStock <= 0}
             className="bg-green-600 hover:bg-green-800 rounded-md flex py-2 px-8 items-center justify-center cursor-pointer">
                 <FaShoppingCart className="text-white text-xl"/>
             </button>

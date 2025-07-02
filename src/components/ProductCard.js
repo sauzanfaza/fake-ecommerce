@@ -2,13 +2,16 @@
 import products from "@/data/products";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
 
 export default function ProductCard() {
     const router = useRouter();
-    const [isLoading, setIsLoading] = useState(false);
+    const [loadingId, setLoadingId] = useState(null);
+    const {stockData} = useCart();
 
+    
     const handleClick = (id) => {
-        setIsLoading(true);
+        setLoadingId(id);
         router.push(`/productDetail/${id}`);
     }
     return(
@@ -19,7 +22,7 @@ export default function ProductCard() {
                     onClick={() => handleClick(product.id)}
                     key={product.id}    
                     className={`bg-white p-4 rounded-md border shadow aspect-square hover:scale-105 transition-transform duration-300 ${
-                        isLoading ? 'opacity-50 pointer-events-none' : ''
+                        loadingId === product.id ?  'opacity-50 pointer-events-none' : ''
                     }`}>
                         <div className="w-full h-full bg-white rounded-md overflow-hidden flex items-center justify-center mb-2">
                         <img src={product.image} alt={product.category} 
@@ -29,7 +32,7 @@ export default function ProductCard() {
                         <div>
                         <h1>{product.name}</h1>
                         <p>Rp {product.price.toLocaleString()}</p>
-                        <p>Stok : {product.stok}</p>
+                        <p>Stok : {stockData[product.id] ?? product.stok}</p>
                         </div>
                         
                 </div>
