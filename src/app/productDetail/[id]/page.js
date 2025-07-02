@@ -17,7 +17,9 @@ export default function ProductDetail({params}) {
     const currentStock = stockData[product.id] ?? product.stok;
     const handleClick = () => {
         addTocart(product)
-        // router.push('/productDetail/cart');
+    }
+    const handleRoute = () => {
+        router.push('/productDetail/cart');
     }
 
     return(
@@ -30,6 +32,11 @@ export default function ProductDetail({params}) {
             />
             </div>
             <div className="w-full sm:w-1/2 flex flex-col justify-center">
+            <div className="relative">
+                <FaShoppingCart 
+                    onClick={handleRoute}
+                    className="text-black cursor-pointer absolute top-2 right-2"/>
+            </div>
             <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
             <p className="text-xl font-semibold ">Rp {product.price.toLocaleString()}</p>
             <p className="mt-1 text-sm">{product.category}</p>

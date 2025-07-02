@@ -1,11 +1,12 @@
-import Header from "@/components/Header";
-import ProductCard from "@/components/ProductCard";
+'use client'
+import {useRouter} from 'next/navigation';
+import {useEffect} from 'react';
 
 export default function Home() {
-  return(
-    <>
-    <Header />
-    <ProductCard />
-    </>
-  )
+  const route = useRouter();
+
+  useEffect(() => {
+    route.push('/regis');
+  }, [])
+
 }
