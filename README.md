@@ -83,7 +83,7 @@ npm start
 ---
 
 ## 📸 Preview
-<img width="1920" height="1008" alt="image" src="https://github.com/user-attachments/assets/978f1c7d-c220-47da-bdb6-91ec6577f30a" />
+<img width="1920" height="1008" alt="image" src="https://github.com/user-attachments/assets/ce3a5fe6-643a-4b18-b25a-db9b5047b822" />
 
 
 ---
