@@ -29,7 +29,7 @@ export default function Login() {
         }
 
         try{
-            const userCredential = await (auth, email, password)
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
             console.log("User Created:", userCredential.user);
             route.push("/dashboard");
         } catch(error) {
