@@ -3,21 +3,30 @@ import products from "@/data/products";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { useSearch } from "@/context/SearchContext";
 
 export default function ProductCard() {
     const router = useRouter();
     const [loadingId, setLoadingId] = useState(null);
     const {stockData} = useCart();
+    const {keyword} = useSearch()
 
     
     const handleClick = (id) => {
         setLoadingId(id);
         router.push(`/productDetail/${id}`);
     }
+
+    // filter produk dari searchbar
+    const filteredProduk = products.filter((item) => 
+    item.name.toLowerCase().includes(keyword.toLowerCase())
+)
+
+
     return(
         <section>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 p-4 cursor-pointer">
-                {products.map((product) => (
+                {filteredProduk.map((product) => (
                 <div 
                     onClick={() => handleClick(product.id)}
                     key={product.id}    

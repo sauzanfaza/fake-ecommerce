@@ -1,6 +1,7 @@
 'use client';
 import {FaShoppingCart} from 'react-icons/fa';
 import { useRouter } from "next/navigation"
+import SearchBar from './SearchBar';
 
 
 export default function Header() {
@@ -22,9 +23,11 @@ export default function Header() {
                 </button>
             </div>
         </header>
-        <nav className="flex gap-4 mb-8">
-            <button className="w-1/2 items-center shadow-md border rounded-md p-4 ml-6 text-center cursor-pointer hover:scale-105 transition-transform duration-500">Kategori</button>
-            <button className="w-1/2 items-center shadow-md border rounded-md p-4 mr-6 text-center cursor-pointer hover:scale-105 transition-transform duration-500">Filter</button>
+        <nav className="w-full flex gap-2 mb-8">
+            <div className='flex-1'>
+            <SearchBar />
+            </div>
+            <button className="w-32 items-center shadow-md border rounded-md p-4 mr-6 text-center cursor-pointer hover:scale-105 transition-transform duration-500">Filter</button>
         </nav>
         </>
     )
