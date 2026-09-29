@@ -1,9 +1,18 @@
 'use client'
+import { useCallback } from "react";
 import { useSearch } from "@/context/SearchContext";
 import { IoIosSearch } from "react-icons/io";
+import debounce from "lodash.debounce"
 
 export default function SearchBar() {
     const {setKeyword} = useSearch()
+
+    const handleSearch = useCallback(
+        debounce((value) => {
+            setKeyword(value)
+        }, 500),
+        [setKeyword]
+    )
 
     return(
         <div className="p-4">
@@ -13,7 +22,7 @@ export default function SearchBar() {
                 <input
                 type="text"
                 placeholder="cari sesuatu"
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-4 rounded-lg border border-slate-400 focus:outline-none focus:ring-slate-600"/>
             </div>
         </div>
