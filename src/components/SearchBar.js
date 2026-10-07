@@ -10,7 +10,7 @@ export default function SearchBar() {
     const handleSearch = useCallback(
         debounce((value) => {
             setKeyword(value)
-        }, 500),
+        }, 1000),
         [setKeyword]
     )
 
