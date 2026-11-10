@@ -1,12 +1,4 @@
-type Product = {
-    id: number
-    name: string
-    price: number
-    category: "Beauty" | "Elektronik" | "Style"
-    image: string
-    description: string
-    stok: number
-}
+import { Product } from "@/types/products";
 
 const products : Product[] = [
     {
