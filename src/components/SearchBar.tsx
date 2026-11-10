@@ -14,6 +14,8 @@ export default function SearchBar() {
         [setKeyword]
     )
 
+    // setKeyword(123): cek ts notice error
+
     return(
         <div className="p-4">
             <div className="relative">

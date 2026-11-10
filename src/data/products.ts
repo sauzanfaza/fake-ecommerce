@@ -1,11 +1,21 @@
-const products = [
+type Product = {
+    id: number
+    name: string
+    price: number
+    category: "Beauty" | "Elektronik" | "Style"
+    image: string
+    description: string
+    stok: number
+}
+
+const products : Product[] = [
     {
         id: 1,
         name: "foundation",
         price: 120000,
         category: "Beauty",
         image: '/img/foundation.jpg',
-        desciption: 'Foundation flawless dan tahan lama, full coverage.',
+        description: 'Foundation flawless dan tahan lama, full coverage.',
         stok: 100
     },
     {
@@ -14,25 +24,25 @@ const products = [
         price: 15000000,
         category: "Elektronik",
         image: '/img/handphone.jpg',
-        desciption: 'dengan teknologi AI terbaru, dan penyimpanan besar.',
+        description: 'dengan teknologi AI terbaru, dan penyimpanan besar.',
         stok: 20
     },
     {
         id: 3,
         name: "kemeja",
         price: 110000,
-        category: "style",
+        category: "Style",
         image: '/img/kemeja.jpg',
-        desciption: 'kemeja lucu, adem dan anti kusut',
+        description: 'kemeja lucu, adem dan anti kusut',
         stok: 200
     },
     {
         id: 4,
         name: "sepatu",
         price: 170000,
-        category: "style",
+        category: "Style",
         image: '/img/sepatu.jpg',
-        desciption: 'stylish, kekinian, dan kece',
+        description: 'stylish, kekinian, dan kece',
         stok: 50
     },
     {
@@ -41,16 +51,16 @@ const products = [
         price: 120000,
         category: "Beauty",
         image: '/img/tas.jpg',
-        desciption: 'tas branded, elegan dan stylish',
+        description: 'tas branded, elegan dan stylish',
         stok: 100
     },
     {
         id: 6,
         name: "sepatu",
         price: 170000,
-        category: "style",
+        category: "Style",
         image: '/img/sepatu.jpg',
-        desciption: 'stylish, kekinian, dan kece',
+        description: 'stylish, kekinian, dan kece',
         stok: 50
     },
     {
@@ -59,16 +69,16 @@ const products = [
         price: 120000,
         category: "Beauty",
         image: '/img/foundation.jpg',
-        desciption: 'Foundation flawless dan tahan lama, full coverage.',
+        description: 'Foundation flawless dan tahan lama, full coverage.',
         stok: 100
     },
     {
         id: 8,
         name: "kemeja",
         price: 110000,
-        category: "style",
+        category: "Style",
         image: '/img/kemeja.jpg',
-        desciption: 'kemeja lucu, adem dan anti kusut',
+        description: 'kemeja lucu, adem dan anti kusut',
         stok: 200
     },
 ]

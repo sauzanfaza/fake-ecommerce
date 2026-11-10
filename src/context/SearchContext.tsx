@@ -1,9 +1,14 @@
 'use client'
-import { createContext, useContext, useState } from "react"
+import { createContext, ReactNode, useContext, useState } from "react"
 
-const SearchContext = createContext()
+type SearchContextType = {
+    keyword: string
+    setKeyword: (value: string) => void
+}
 
-export function SearchProvider({ children }) {
+const SearchContext = createContext<SearchContextType | undefined>(undefined)
+
+export function SearchProvider({ children } : { children: ReactNode}) {
     const [keyword, setKeyword] = useState('')
     return(
         <SearchContext.Provider value={{keyword, setKeyword}}>
@@ -13,5 +18,7 @@ export function SearchProvider({ children }) {
 }
 
 export function useSearch() {
-    return useContext(SearchContext)
+    const context = useContext(SearchContext)
+    if(!context) throw new Error ("useSearch harus di pakai di dalam SearchProvider")
+    return context
 }
