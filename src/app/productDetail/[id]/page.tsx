@@ -3,17 +3,19 @@ import products from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { FaShoppingCart } from "react-icons/fa";
+import { use } from "react";
 
-export default function ProductDetail({params}) {
+export default function ProductDetail({params}: { params: Promise<{ id: string}>}) {
+    const { id } = use(params)
     const router = useRouter();
     const { addTocart, stockData } = useCart();
 
-    const productId = parseInt(params.id);
+    const productId = parseInt(id);
     const product = products.find((pd) => pd.id === productId);
     if(!product) {
         return <div>Produk tidak ditemukan!!!</div>
     }
-
+    
     const currentStock = stockData[product.id] ?? product.stok;
     const handleClick = () => {
         addTocart(product)
@@ -28,7 +30,7 @@ export default function ProductDetail({params}) {
             
             <div className="w-full sm:w-1/2 flex justify-center items-center ">
             <img src={product.image} alt={product.category}
-                className="w-auto max-h-80 0bject-contain rounded-md"
+                className="w-auto max-h-80 object-contain rounded-md"
             />
             </div>
             <div className="w-full sm:w-1/2 flex flex-col justify-center">

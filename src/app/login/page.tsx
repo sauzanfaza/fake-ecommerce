@@ -20,7 +20,7 @@ export default function Login() {
         return () => unsubscribe();
     }, [isAlreadyLog]);
 
-    const onLogin = async (e) => {
+    const onLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(!email || !password) {
