@@ -1,9 +1,10 @@
 'use client'
 import { createContext, ReactNode, useContext, useState } from "react";
 import { Product } from "@/types/products"
+import { CartItem } from "@/types/cartItem";
 
 type CartContextType = {
-    cart: Product[]
+    cart: CartItem[]
     stockData: Record<number, number>
     addTocart: (product: Product) => void
 }
@@ -11,7 +12,7 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({children} : { children: ReactNode}) => {
-    const [cart, setCart] = useState<Product[]>([]);
+    const [cart, setCart] = useState<CartItem[]>([]);
     const [stockData, setStockData] = useState<Record<number, number>>({});
 
     const addTocart = (product: Product) => {
@@ -26,7 +27,21 @@ export const CartProvider = ({children} : { children: ReactNode}) => {
         }))
 
         //tambah ke cart
-        setCart(prev => [...prev, product])
+        setCart(prev => {
+            // cari apakah produk ini sudah ada di keranjang
+            const productExist = prev.find(item => item.product.id === product.id)
+
+            if(productExist) {
+                return prev.map(item => 
+                    item.product.id === product.id
+                    ? {...item, quantity: item.quantity + 1}
+                    : item
+                )
+            }
+
+            //baris baru
+            return [...prev, { product, quantity: 1}]
+        })
     }
 
     return(
