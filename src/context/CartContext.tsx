@@ -1,7 +1,7 @@
 'use client'
 import { createContext, ReactNode, useContext, useState } from "react";
 import { Product } from "@/types/products"
-import { CartItem } from "@/types/cartItem";
+import { CartItem } from "@/types/CartItem";
 
 type CartContextType = {
     cart: CartItem[]
@@ -32,7 +32,7 @@ export const CartProvider = ({children} : { children: ReactNode}) => {
             const productExist = prev.find(item => item.product.id === product.id)
 
             if(productExist) {
-                return prev.map(item => 
+                return prev.map(item =>
                     item.product.id === product.id
                     ? {...item, quantity: item.quantity + 1}
                     : item
