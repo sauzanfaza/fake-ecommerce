@@ -7,12 +7,12 @@ import { useSearch } from "@/context/SearchContext";
 
 export default function ProductCard() {
     const router = useRouter();
-    const [loadingId, setLoadingId] = useState(null);
+    const [loadingId, setLoadingId] = useState<number | null>(null);
     const {stockData} = useCart();
     const {keyword} = useSearch()
 
     
-    const handleClick = (id) => {
+    const handleClick = (id: number) => {
         setLoadingId(id);
         router.push(`/productDetail/${id}`);
     }

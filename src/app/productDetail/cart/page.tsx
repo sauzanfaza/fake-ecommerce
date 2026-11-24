@@ -22,23 +22,30 @@ export default function Cart() {
                 </div>
             ) : (
                 <div className=" flex flex-col gap-4">
-                {cart.map((item, index) => (
-                    <div
-                    key={index}
+                {cart.map((item) => {
+                    const totalPrice = item.product.price * item.quantity
+                    return (
+                         <div
+                    key={item.product.id}
                     className="bg-white p-4 rounded-md shadow-md border flex gap-4 items-center"
                     >
                     <div className="w-24 h-24 flex-shrink-0">
-                        <img src={item.image} alt={item.name} 
+                        <img src={item.product.image} alt={item.product.name} 
                         className="w-full h-full object-contain rounded-md"
                         />
                     </div>
 
                     <div className="flex flex-col justify-between flex-1">
-                        <h3 className="font-semibold text-lg">{item.name}</h3>
-                        <p className="font-semibold text-xl">{item.price.toLocaleString()}</p>
+                        <h3 className="font-semibold text-lg">{item.product.name}</h3>
+                        <p className="font-semibold text-xl">Rp{item.product.price.toLocaleString()}</p>
+                        <div className="flex gap-6">
+                        <p className="font-semibold text-md">Total Produk: {item.quantity}</p>
+                        <p className="font-semibold text-md">Total Price: Rp{totalPrice.toLocaleString()}</p>
+                        </div>
                     </div>
                     </div>
-                ))}
+                    )
+                })}
                 </div>
             )}
         </div>
